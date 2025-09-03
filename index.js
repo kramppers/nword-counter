@@ -15,6 +15,7 @@ const client = new Client({
 
 const wordCounts = new Map();
 const targetWords = config.targetWords;
+const startTime = Date.now();
 
 
 function escapeRegexLiteral(text) {
@@ -179,6 +180,18 @@ client.on('interactionCreate', async interaction => {
             await interaction.reply('A apărut o eroare la încărcarea glumei!');
         }
     }
+
+    if (interaction.commandName === 'uptime') {
+        const uptime = Date.now() - startTime;
+        const seconds = Math.floor(uptime / 1000);
+        const minutes = Math.floor(seconds / 60);
+        const hours = Math.floor(minutes / 60);
+        const days = Math.floor(hours / 24);
+
+        const uptimeString = `${days}d ${hours % 24}h ${minutes % 60}m ${seconds % 60}s`;
+        
+        await interaction.reply(`⏱️ Nigga monitorizeaza cuvintele de **${uptimeString}**`);
+    }
 });
 
 
@@ -246,6 +259,10 @@ client.once('clientReady', async () => {
             {
                 name: 'duma',
                 description: `maribu.json`,
+            },
+            {
+                name: 'uptime',
+                description: `Arata cat timp ruleaza bot-ul`,
             }
         ];
 
