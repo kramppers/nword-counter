@@ -1,0 +1,1 @@
+nigga counter pentru baietii puternici, multumesc [Kedoo](https://github.com/Kedoo96) pentru idee
